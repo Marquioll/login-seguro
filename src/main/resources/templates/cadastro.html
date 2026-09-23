@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro | Login Seguro</title>
+</head>
+
+<body>
+
+    <main>
+
+        <h1>Criar conta</h1>
+
+        <p th:if="${sucesso}" th:text="${sucesso}"></p>
+
+        <form
+            th:action="@{/cadastro}"
+            th:object="${cadastroUsuarioDTO}"
+            method="post">
+
+            <div>
+                <label for="nome">Nome</label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    th:field="*{nome}"
+                    placeholder="Digite seu nome">
+
+                <p
+                    th:if="${#fields.hasErrors('nome')}"
+                    th:errors="*{nome}">
+                </p>
+            </div>
+
+            <div>
+                <label for="email">E-mail</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    th:field="*{email}"
+                    placeholder="Digite seu e-mail">
+
+                <p
+                    th:if="${#fields.hasErrors('email')}"
+                    th:errors="*{email}">
+                </p>
+            </div>
+
+            <div>
+                <label for="senha">Senha</label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    th:field="*{senha}"
+                    placeholder="Digite sua senha">
+
+                <p
+                    th:if="${#fields.hasErrors('senha')}"
+                    th:errors="*{senha}">
+                </p>
+            </div>
+
+            <button type="submit">
+                Cadastrar
+            </button>
+
+        </form>
+
+    </main>
+
+</body>
+</html>
