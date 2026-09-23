@@ -40,12 +40,23 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
 
                 .authorizeHttpRequests(auth -> auth
+
                         .requestMatchers(
                                 "/cadastro",
                                 "/css/**"
                         ).permitAll()
 
-                        .anyRequest().authenticated()
+                        .requestMatchers("/admin/**")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers("/moderador/**")
+                        .hasAnyRole("MODERATOR", "ADMIN")
+
+                        .requestMatchers("/inicio")
+                        .authenticated()
+
+                        .anyRequest()
+                        .authenticated()
                 )
 
                 .formLogin(form -> form

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import com.loginseguro.model.Role;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -31,10 +32,15 @@ public class CustomUserDetailsService implements UserDetailsService {
                         )
                 );
 
+        String[] authorities = usuario.getRoles()
+                .stream()
+                .map(Role::name)
+                .toArray(String[]::new);
+
         return User.builder()
                 .username(usuario.getEmail())
                 .password(usuario.getSenha())
-                .authorities(usuario.getRoles().toArray(new String[0]))
+                .authorities(authorities)
                 .disabled(!usuario.isAtivo())
                 .build();
     }

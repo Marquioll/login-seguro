@@ -5,6 +5,7 @@ import com.loginseguro.model.Usuario;
 import com.loginseguro.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.loginseguro.model.Role;
 
 @Service
 public class UsuarioService {
@@ -39,7 +40,7 @@ public class UsuarioService {
                 senhaCriptografada
         );
 
-        usuario.getRoles().add("ROLE_USER");
+        usuario.getRoles().add(Role.ROLE_USER);
         usuario.setAtivo(true);
 
         return usuarioRepository.save(usuario);

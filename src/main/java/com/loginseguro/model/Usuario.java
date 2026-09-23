@@ -18,7 +18,7 @@ public class Usuario {
 
     private String senha;
 
-    private Set<String> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     private boolean ativo = true;
 
@@ -63,13 +63,13 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Set<String> getRoles() {
-        return roles;
+    public Set<Role> getRoles() {
+    return roles;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
-    }
+    public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+    }   
 
     public boolean isAtivo() {
         return ativo;
