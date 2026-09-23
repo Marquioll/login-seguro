@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Início | Login Seguro</title>
+</head>
+
+<body>
+
+    <main>
+
+        <h1>Área protegida</h1>
+
+        <p>
+            Você está autenticado como:
+            <strong th:text="${emailUsuario}"></strong>
+        </p>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">
+                Sair
+            </button>
+        </form>
+
+    </main>
+
+</body>
+</html>
